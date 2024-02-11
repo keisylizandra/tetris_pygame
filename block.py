@@ -26,7 +26,7 @@ class Block:
                     screen.blit(Block.IMAGE, (pos_x , pos_y))
 
 
-    def move(self):
+    def moveDown(self):
         if not self.collision:
             self.y += Block.SPEED
             
@@ -37,7 +37,22 @@ class Block:
 
     
     def moveLeftOrRight(self, direction):
-        if direction == "right":
+        if direction == "right" and self.x < (Block.SCREEN_WIDTH - Block.IMAGE.get_width() * len(self.shape[0])):
             self.x += Block.IMAGE.get_width()
-        elif direction == "left":
+
+        elif direction == "left" and self.x > 0:
             self.x -= Block.IMAGE.get_width()
+
+    
+    def checkPositionAtBoard(self,board):
+         for row in range(len(self.shape)):
+            for column in range(len(self.shape[row])):
+                if self.shape[row][column] == 1: 
+
+                    pos_x = self.x + (column + 1) * Block.IMAGE.get_width()
+                    pos_y = self.y + (row + 1) * Block.IMAGE.get_height()
+
+                    coordinateRow = pos_y // Block.IMAGE.get_height() - 1
+                    coordinateCol = pos_x // Block.IMAGE.get_width() - 1 
+
+                    board.matriz[coordinateRow][coordinateCol] = 1
