@@ -2,6 +2,7 @@ import pygame
 import random
 from block import Block
 from board import Board
+from startScreen import StartScreen
 
 # Initialize the game
 pygame.init()
@@ -30,9 +31,46 @@ shapes = [
             [1],
             [1],
             [1],
+            ],
+
+            [
+                [1, 0, 1],
+                [1, 1, 0],
+                [1, 1, 0],
+                [1, 0, 1]
+            ],
+
+            [
+                [1, 1, 1],
+                [1, 0, 0],
+                [1, 1, 0],
+                [1, 1, 1],
+            ],
+
+            [
+                [1, 0, 0],
+                [1, 0, 0],
+                [1, 0, 0],
+                [1, 1, 1],
+            ],
+
+            [
+                [1, 1, 1],
+                [1, 0, 1],
+                [1, 1, 1],
+                [1, 0, 1],
+            ],
+
+            [
+                [1, 0, 0],
+                [1, 1, 1],
+                [1, 1, 1],
+                [1, 0, 1],
             ]
         ]
 
+startScreen = StartScreen()
+startScreen.run()
 block = Block(random.choice(shapes), 0, 0)
 board = Board()
 
@@ -46,15 +84,15 @@ while running:
 
     keys = pygame.key.get_pressed()  # get the state of all keyboard keys
     if keys[pygame.K_RIGHT]:  # if the right arrow key is pressed
-        block.moveLeftOrRight("right")
+        block.moveLeftOrRight("right", board)
     if keys[pygame.K_LEFT]:  # if the left arrow key is pressed
-        block.moveLeftOrRight("left")
+        block.moveLeftOrRight("left", board)
     if keys[pygame.K_DOWN]:
         block.moveDown()
 
     # fill the screen with white
     screen.fill(("white"))
-    block.draw(screen)
+    block.draw(screen, board)
     block.moveDown()
     board.draw(screen)   
     if block.collision:

@@ -21,3 +21,4 @@ class Board:
                     pos_x = Board.IMAGE.get_width() * col
                     pos_y = Board.IMAGE.get_height() * row
                     screen.blit(Board.IMAGE, (pos_x , pos_y))
+
