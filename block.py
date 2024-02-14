@@ -86,7 +86,7 @@ class Block:
                     coordinateRow = pos_y // Block.IMAGE.get_height() - 1 
                     coordinateCol = pos_x // Block.IMAGE.get_width() - 1
 
-                    if ((coordinateCol + 1) < len(board.matriz[0]) and board.matriz[coordinateRow][coordinateCol + 1] == 1) or ((coordinateCol - 1) > 0 and board.matriz[coordinateRow][coordinateCol - 1] == 1):
+                    if ((coordinateCol + 1) < len(board.matriz[0]) and board.matriz[coordinateRow][coordinateCol + 1] == 1) or ((coordinateCol - 1) >= 0 and board.matriz[coordinateRow][coordinateCol - 1] == 1):
                         return False  # The position is occupied
 
         return True  # The position is not occupied 
