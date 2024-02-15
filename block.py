@@ -37,10 +37,10 @@ class Block:
 
     
     def moveLeftOrRight(self, direction, board):
-        if direction == "right" and self.x < (Block.SCREEN_WIDTH - Block.IMAGE.get_width() * len(self.shape[0])) and self.sideCollision(board):
+        if direction == "right" and self.x < (Block.SCREEN_WIDTH - Block.IMAGE.get_width() * len(self.shape[0])) and self.sideCollision(board, direction):
             self.x += Block.IMAGE.get_width()
 
-        elif direction == "left" and self.x > 0 and self.sideCollision(board):
+        elif direction == "left" and self.x > 0 and self.sideCollision(board, direction):
             self.x -= Block.IMAGE.get_width()
 
     
@@ -75,7 +75,7 @@ class Block:
         return False  # The position is not occupied
     
 
-    def sideCollision(self, board):
+    def sideCollision(self, board, direction):
 
         for row in range(len(self.shape)):
             for column in range(len(self.shape[row])):
@@ -86,8 +86,17 @@ class Block:
                     coordinateRow = pos_y // Block.IMAGE.get_height() - 1 
                     coordinateCol = pos_x // Block.IMAGE.get_width() - 1
 
-                    if ((coordinateCol + 1) < len(board.matriz[0]) and board.matriz[coordinateRow][coordinateCol + 1] == 1) or ((coordinateCol - 1) >= 0 and board.matriz[coordinateRow][coordinateCol - 1] == 1):
+                    if ((coordinateCol + 1) < len(board.matriz[0]) and board.matriz[coordinateRow][coordinateCol + 1] == 1) and direction == 'right':
                         return False  # The position is occupied
+                    
+                    if ((coordinateCol - 1) >= 0 and board.matriz[coordinateRow][coordinateCol - 1] == 1) and direction == 'left':
+                        return False
 
         return True  # The position is not occupied 
     
+    def stopGame(self):
+        if self.y <= 0:
+            return True
+
+        else:
+            return False

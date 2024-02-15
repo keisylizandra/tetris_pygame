@@ -3,6 +3,7 @@ import random
 from block import Block
 from board import Board
 from startScreen import StartScreen
+from gameOverScreen import GameOverScreen
 
 # Initialize the game
 pygame.init()
@@ -20,16 +21,32 @@ shapes = [
             ],
 
             [
-            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-            ]
+            [1, 1, 1],
+            [1, 1, 1],
+            [1, 1, 1]
+            ],
+
+            [
+            [0, 1, 0],
+            [1, 1, 1],
+            ],
+
+            [
+            [1, 0, 0],
+            [1, 0, 0],
+            [1, 1, 1],
+            ],
+
+            [
+            [1, 1, 1],
+            [1, 0, 1]
+            ],
         ]
 
 startScreen = StartScreen()
 startScreen.run()
-block = Block(random.choice(shapes), 0, 0)
-board = Board()
+block = Block(random.choice(shapes), 0, 25)
+board = Board(screen)
 
 
 while running:
@@ -55,7 +72,12 @@ while running:
     if block.collision:
         block.checkPositionAtBoard(board)
         board.eraseLine(screen)
-        block = Block(random.choice(shapes), 0, 0)
+
+        if block.stopGame():
+            gameOver = GameOverScreen(board.score)
+            running = False
+
+        block = Block(random.choice(shapes), 0, 25)
 
     # update the display
     pygame.display.flip()
