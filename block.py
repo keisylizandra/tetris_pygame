@@ -101,7 +101,14 @@ class Block:
     
 
     def rotate(self, shape):
-        return [list(x) for x in zip(*shape[::-1])]
+        rotated_shape = [list(x) for x in zip(*shape[::-1])]
+
+        if len(rotated_shape) == len(shape[0]) and len(rotated_shape[0]) == len(shape) and self.x + self.image.get_width() * len(rotated_shape) >= 500:
+            self.x -= (len(rotated_shape[0]) - len(shape[0])) * self.image.get_width()
+            return rotated_shape
+        else:
+            return rotated_shape
+
 
 
 
