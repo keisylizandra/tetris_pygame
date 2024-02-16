@@ -6,6 +6,7 @@ from block import Block
 from board import Board
 from startScreen import StartScreen
 from gameOverScreen import GameOverScreen
+import firebase_database
 
 # Initialize the game
 pygame.init()
@@ -56,6 +57,7 @@ while running:
         if 1 in board.matriz[0]:
             gameOver = GameOverScreen(board.score)
             running = False
+            firebase_database.addScoreToFireBase({'Score:' : board.score})
             gameOver.run()
 
 
