@@ -1,10 +1,11 @@
 import pygame
 import os 
+import config
 
 #create a block class
 class StartScreen:
-    SCREEN_WIDTH = 500
-    SCREEN_HEIGHT = 600
+    SCREEN_WIDTH = config.SCREEN_WIDTH
+    SCREEN_HEIGHT = config.SCREEN_HEIGHT
 
     def __init__(self):
         self.screen = pygame.display.set_mode((StartScreen.SCREEN_WIDTH, StartScreen.SCREEN_HEIGHT))

@@ -1,6 +1,7 @@
 import pygame
 import os
 import random
+import config
 from block import Block
 from board import Board
 from startScreen import StartScreen
@@ -8,63 +9,14 @@ from gameOverScreen import GameOverScreen
 
 # Initialize the game
 pygame.init()
-screen_width = 500
-screen_height = 600
+screen_width = config.SCREEN_WIDTH
+screen_height = config.SCREEN_HEIGHT
 screen = pygame.display.set_mode((screen_width, screen_height))
 clock = pygame.time.Clock()
 running = True
-images = [pygame.image.load(os.path.join("assets", "piscadinha.png")), pygame.image.load(os.path.join("assets", "bichinha.png")), pygame.image.load(os.path.join("assets", "apaixonado.png")), pygame.image.load(os.path.join("assets", "zeRuela.png")), pygame.image.load(os.path.join("assets", "medroso.png"))] 
+images = config.IMAGE_LIST
 
-shapes = [
-            [
-                [1],
-                [1],
-                [1],
-            ],
-
-            [
-                [1, 1],
-                [1, 1],    
-            ],
-
-            [
-                [0, 1, 0],
-                [1, 1, 1],
-            ],
-
-            [
-                [1, 1],
-                [1, 0]
-            ],
-
-            [
-                [1, 0],
-                [1, 0],
-                [1, 1],
-            ],
-
-            [
-                [1, 1, 1],
-                [1, 0, 1]
-            ],
-
-            [
-                [1, 0],
-                [1, 0],
-                [1, 1]
-            ],
-
-            [
-                [1, 1],
-                [1, 1],
-                [1, 1]
-            ],
-
-            [
-                [0, 1, 1],
-                [1, 1, 0]
-            ]
-        ]
+shapes = config.SHAPES
 
 startScreen = StartScreen()
 startScreen.run()

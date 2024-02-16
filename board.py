@@ -1,13 +1,14 @@
 import pygame
+import config
 import random
 import os 
 
 class Board:
     
-    HEIGHT_TOP_BAR = 75
-    SCREEN_WIDTH = 500
-    SCREEN_HEIGHT = 600
-    BAR_COLOR = (0, 0, 0)
+    HEIGHT_TOP_BAR = config.HEIGHT_TOP_BAR
+    SCREEN_WIDTH = config.SCREEN_WIDTH
+    SCREEN_HEIGHT = config.SCREEN_HEIGHT
+    BAR_COLOR = config.BAR_COLOR
 
     def __init__(self, screen, image):
         self.image = image

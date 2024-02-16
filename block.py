@@ -1,17 +1,18 @@
 import pygame
 import random
 import os 
+import config
 
 #create a block class
 class Block:
-    RANDOM = [pygame.image.load(os.path.join("assets", "piscadinha.png")), pygame.image.load(os.path.join("assets", "bichinha.png")), pygame.image.load(os.path.join("assets", "apaixonado.png")), pygame.image.load(os.path.join("assets", "zeRuela.png")), pygame.image.load(os.path.join("assets", "medroso.png"))]   
-    SPEED = 2
-    SCREEN_WIDTH = 500
-    SCREEN_HEIGHT = 600
+    IMAGE_LIST = config.IMAGE_LIST
+    SPEED = config.SPEED
+    SCREEN_WIDTH = config.SCREEN_WIDTH
+    SCREEN_HEIGHT = config.SCREEN_HEIGHT
 
 
     def __init__(self, shape, x, y):
-        self.image = random.choice(Block.RANDOM)
+        self.image = random.choice(Block.IMAGE_LIST)
         self.shape = shape
         self.x = x
         self.y = y
