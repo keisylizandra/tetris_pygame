@@ -20,7 +20,7 @@ shapes = config.SHAPES
 
 startScreen = StartScreen()
 startScreen.run()
-block = Block(random.choice(shapes), 0, 0)
+block = Block(random.choice(shapes), (screen_width//2), 0)
 board = Board(screen, random.choice(images))
 
 
@@ -51,7 +51,7 @@ while running:
     if block.collision:
         block.checkPositionAtBoard(board)
         board.eraseLine(screen)
-        block = Block(random.choice(shapes), 0, 0)
+        block = Block(random.choice(shapes), (screen_width//2), 0)
 
         if 1 in board.matriz[0]:
             gameOver = GameOverScreen(board.score)
