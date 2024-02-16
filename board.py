@@ -27,7 +27,6 @@ class Board:
             self.matriz.append([])
             for col in range(int(Board.SCREEN_WIDTH / self.image.get_width())):
                 self.matriz[row].append(0)
-
         
 
 
