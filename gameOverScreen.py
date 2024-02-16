@@ -1,6 +1,7 @@
 import pygame
 import os
 import config
+import firebase_database
 
 #create a block class
 class GameOverScreen:
@@ -8,6 +9,8 @@ class GameOverScreen:
     SCREEN_HEIGHT = config.SCREEN_HEIGHT
 
     def __init__(self, score):
+        print(firebase_database.getHighestScore())
+
         self.screen = pygame.display.set_mode((GameOverScreen.SCREEN_WIDTH, GameOverScreen.SCREEN_HEIGHT))
         self.score = score
         self.clock = pygame.time.Clock()

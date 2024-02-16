@@ -57,7 +57,8 @@ while running:
         if 1 in board.matriz[0]:
             gameOver = GameOverScreen(board.score)
             running = False
-            firebase_database.addScoreToFireBase({'Score:' : board.score})
+            firebase_database.addScoreToFireBase({'Score': board.score})
+
             gameOver.run()
 
 
