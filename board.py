@@ -62,7 +62,28 @@ class Board:
                     # Define a primeira linha (a linha mais alta) como uma nova linha vazia
                     self.matriz[0] = [0 for _ in self.matriz[0]]
         self.score += self.points
+        self.increaseSpeed()
+    
 
+    def increaseSpeed(self):
+        
+        if self.score >= 200:
+            config.SPEED += 1
+
+        elif self.score >= 400:
+            config.SPEED += 1
+
+        elif self.score >= 600:
+            config.SPEED += 1
+
+        elif self.score >= 800:
+            config.SPEED += 1
+
+        elif self.score >= 1000:
+            config.SPEED += 1
+        
+        else:
+            config.SPEED = config.SPEED
 
 
                             
