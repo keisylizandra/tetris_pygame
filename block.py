@@ -6,12 +6,12 @@ import config
 #create a block class
 class Block:
     IMAGE_LIST = config.IMAGE_LIST
-    SPEED = config.SPEED
     SCREEN_WIDTH = config.SCREEN_WIDTH
     SCREEN_HEIGHT = config.SCREEN_HEIGHT
 
 
     def __init__(self, shape, x, y):
+        self.SPEED = config.SPEED
         self.image = random.choice(Block.IMAGE_LIST)
         self.shape = shape
         self.x = x
@@ -31,7 +31,7 @@ class Block:
 
     def moveDown(self):
         if not self.collision:
-            self.y += Block.SPEED
+            self.y += self.SPEED
             
 
     def checkCollision(self, pos_y, board):
@@ -72,10 +72,12 @@ class Block:
                     coordinateRow = pos_y // self.image.get_height() - 1 
                     coordinateCol = pos_x // self.image.get_width() - 1
 
-                    if (coordinateRow + 1) < len(board.matriz) and board.matriz[coordinateRow + 1][coordinateCol] == 1:
-                        return True  # The position is occupied
+                    if 0 <= coordinateRow + 1 < len(board.matriz) and 0 <= coordinateCol < len(board.matriz[0]):
+                        if board.matriz[coordinateRow + 1][coordinateCol] == 1:
+                            return True  # A posição está ocupada
 
-        return False  # The position is not occupied
+        return False  # A posição não está ocupada
+
     
 
     def sideCollision(self, board, direction):
@@ -99,5 +101,8 @@ class Block:
     
 
     def rotate(self, shape):
-        return [list(x)[::-1] for x in zip(*shape)]
+        return [list(x) for x in zip(*shape[::-1])]
+
+
+
   
