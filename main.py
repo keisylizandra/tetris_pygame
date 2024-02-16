@@ -21,7 +21,7 @@ shapes = config.SHAPES
 
 startScreen = StartScreen()
 startScreen.run()
-block = Block(random.choice(shapes), (screen_width//2), 0)
+block = Block(random.choice(shapes), (screen_width//2), 4)
 board = Board(screen, random.choice(images))
 
 
@@ -31,7 +31,7 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-        elif event.type == pygame.KEYDOWN:
+        if event.key == pygame.K_UP and (block.y + images[0].get_width() * len(block.shape) < screen_height - images[0].get_width()):
             if event.key == pygame.K_UP:
                 block.shape = block.rotate(block.shape)
 
@@ -52,7 +52,7 @@ while running:
     if block.collision:
         block.checkPositionAtBoard(board)
         board.eraseLine(screen)
-        block = Block(random.choice(shapes), (screen_width//2), 0)
+        block = Block(random.choice(shapes), (screen_width//2), 4)
 
         if 1 in board.matriz[0]:
             gameOver = GameOverScreen(board.score)
