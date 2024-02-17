@@ -28,13 +28,16 @@ board = Board(screen, random.choice(images))
 while running:
     # poll for events
     # pygame.QUIT event means the user clicked X to close your window
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
 
-        if event.key == pygame.K_UP and (block.y + images[0].get_width() * len(block.shape) < screen_height - images[0].get_width()):
-            if event.key == pygame.K_UP:
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_UP and (block.y + images[0].get_width() * len(block.shape) < screen_height - images[0].get_width()): 
                 block.shape = block.rotate(block.shape)
+
+
 
     keys = pygame.key.get_pressed()  # get the state of all keyboard keys
     if keys[pygame.K_RIGHT]:  # if the right arrow key is pressed
