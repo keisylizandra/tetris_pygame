@@ -31,8 +31,8 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-        if event.key == pygame.K_UP and (block.y + images[0].get_width() * len(block.shape) < screen_height - images[0].get_width()):
-            if event.key == pygame.K_UP:
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_UP and ( block.y + images[0].get_width() * len(block.shape) < screen_height - images[0].get_width() ) :
                 block.shape = block.rotate(block.shape)
 
     keys = pygame.key.get_pressed()  # get the state of all keyboard keys
@@ -58,7 +58,6 @@ while running:
             gameOver = GameOverScreen(board.score)
             running = False
             firebase_database.addScoreToFireBase({'Score': board.score})
-
             gameOver.run()
 
 
