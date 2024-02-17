@@ -10,6 +10,12 @@ IMAGE_LIST = [pygame.image.load(os.path.join("assets", "piscadinha.png")), pygam
 SPEED = 2
 FONT_PATH = os.path.join("assets", "Honk-Regular.ttf")
 
+pygame.mixer.init()
+POINT_SOUND_PATH = os.path.join("assets", "collect-ring-15982.mp3")
+GAMEOVER_SOUND_PATH = os.path.join("assets", "videogame-death-sound-43894 (1).mp3")
+point_sound = pygame.mixer.Sound(POINT_SOUND_PATH)
+gameOver_sound = pygame.mixer.Sound(GAMEOVER_SOUND_PATH)
+
 SHAPES = [
             [
                 [1],

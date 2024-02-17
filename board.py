@@ -65,6 +65,7 @@ class Board:
 
         if(self.points != 0):
             self.score += self.points
+            config.point_sound.play()
             self.increaseSpeed()
     
 

@@ -9,7 +9,8 @@ class GameOverScreen:
     SCREEN_HEIGHT = config.SCREEN_HEIGHT
 
     def __init__(self, score):
-        print(firebase_database.getHighestScore())
+        
+        config.gameOver_sound.play()
         font_path = config.FONT_PATH
         self.screen = pygame.display.set_mode((GameOverScreen.SCREEN_WIDTH, GameOverScreen.SCREEN_HEIGHT))
         self.score = score
