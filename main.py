@@ -28,12 +28,15 @@ board = Board(screen, random.choice(images))
 while running:
     # poll for events
     # pygame.QUIT event means the user clicked X to close your window
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
         elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_UP and ( block.y + images[0].get_width() * len(block.shape) < screen_height - images[0].get_width() ) :
-                block.shape = block.rotate(block.shape)
+            if event.key == pygame.K_UP and (block.y + images[0].get_width() * len(block.shape) < screen_height - images[0].get_width()):
+                if event.key == pygame.K_UP:
+                    block.shape = block.rotate(block.shape)
+
 
     keys = pygame.key.get_pressed()  # get the state of all keyboard keys
     if keys[pygame.K_RIGHT]:  # if the right arrow key is pressed
@@ -52,9 +55,8 @@ while running:
     if block.collision:
         block.checkPositionAtBoard(board)
         board.eraseLine(screen)
-        block = Block(random.choice(shapes), (screen_width//2), 4)
-
-        if 1 in board.matriz[0]:
+        block = Block(random.choice(shapes), (screen_width//2), 0)
+        if 1 in board.matriz[4]:
             gameOver = GameOverScreen(board.score)
             running = False
             firebase_database.addScoreToFireBase({'Score': board.score})
