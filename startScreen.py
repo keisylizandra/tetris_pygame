@@ -7,12 +7,13 @@ import firebase_database
 class StartScreen:
     SCREEN_WIDTH = config.SCREEN_WIDTH
     SCREEN_HEIGHT = config.SCREEN_HEIGHT
-
+    
     def __init__(self):
         self.screen = pygame.display.set_mode((StartScreen.SCREEN_WIDTH, StartScreen.SCREEN_HEIGHT))
         self.clock = pygame.time.Clock()
-        self.text = pygame.font.Font(None, 36).render('Press ENTER to start', True, (0,0,0))
-        self.text_best_score = pygame.font.Font(None, 36).render(f'Best score: {firebase_database.getHighestScore()}', True, (0,0,0))
+        font_path = config.FONT_PATH
+        self.text = pygame.font.Font(font_path, 36).render('Press ENTER to start', True, (0,0,0))
+        self.text_best_score = pygame.font.Font(font_path, 36).render(f'Best score: {firebase_database.getHighestScore()}', True, (0,0,0))
         self.text_rect = self.text.get_rect(center=(StartScreen.SCREEN_WIDTH // 2, StartScreen.SCREEN_HEIGHT // 2))
         self.text_rect_best_score = self.text_best_score.get_rect(center=(StartScreen.SCREEN_WIDTH // 2, (StartScreen.SCREEN_HEIGHT // 2 + 25)))
         

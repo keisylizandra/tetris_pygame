@@ -14,9 +14,11 @@ class Board:
         self.image = image
         self.score =  0
         self.screen = screen
+
        
         # Define a fonte e o texto
-        self.font = pygame.font.Font(None, 15)
+        font_path = config.FONT_PATH
+        self.font = pygame.font.Font(font_path , 18)
         self.text = self.font.render(f'Score: {self.score}', True, (255, 255, 255))  # White text
 
         # Desenha o texto no centro da barra
