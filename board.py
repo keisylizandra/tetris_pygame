@@ -71,7 +71,7 @@ class Board:
 
     def increaseSpeed(self):
         
-        if self.score == 200 or self.score >= 400 or self.score >= 600 or self.score >= 800 or self.score >= 1000:
+        if self.score == 500 or self.score >= 1000:
             config.SPEED += 1
         else:
             config.SPEED = config.SPEED
