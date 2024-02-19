@@ -50,27 +50,52 @@ class Board:
 
     # Função para apagar uma linha completa
     def eraseLine(self, screen):
+        linhaApagada = -1
         self.points = 0
         # Itera sobre cada linha da matriz de cima para baixo
         for j in range(2):
             for row in reversed(range(len(self.matriz))):
                 # Verifica se a linha está completa (não contém 0)
                 if 0 not in self.matriz[row]:
-                    self.points += 100
-                    # Para cada linha acima da linha completa, copia a linha de cima para a linha de baixo
-                    for i in range(row, 0, -1):
-                        self.matriz[i] = list(self.matriz[i - 1])
-                    # Define a primeira linha (a linha mais alta) como uma nova linha vazia
-                    self.matriz[0] = [0 for _ in self.matriz[0]]
+                    del self.matriz[row]
+                    linhaApagada = row
+        
 
+        if(linhaApagada != -1):
+            matriz_aux = []
+            primeira_linha_com_1 = -1
+            for row in range(linhaApagada):
+                if 1 in self.matriz[row]:
+                    if(primeira_linha_com_1 == -1):
+                        primeira_linha_com_1 = row
+                    matriz_aux.append(self.matriz[row])
+
+
+            for i in range(len(matriz_aux)):
+                print(matriz_aux[i])
+
+            y =  primeira_linha_com_1 * config.IMAGE_LIST[0].get_height()
+
+
+
+
+
+            
+        
+                    
+                 
+
+
+            
         if(self.points != 0):
             self.score += self.points
             config.point_sound.play()
             self.increaseSpeed()
-    
+        
+        print(f'linha apagada: {linhaApagada}')
+        
 
     def increaseSpeed(self):
-        
         if self.score == 500 or self.score >= 1000:
             config.SPEED += 1
         else:

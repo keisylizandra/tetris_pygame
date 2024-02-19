@@ -23,6 +23,7 @@ startScreen = StartScreen()
 startScreen.run()
 block = Block(random.choice(shapes), (screen_width//2), 4)
 board = Board(screen, random.choice(images))
+tick = config.TICK
 
 
 while running:
@@ -68,6 +69,6 @@ while running:
     pygame.display.flip()
 
     # wait for 1/60th of a second
-    clock.tick(30)
+    clock.tick(tick)
 
 pygame.quit()
