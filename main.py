@@ -62,7 +62,7 @@ while running:
             block = Block(matriz_aux, 0, y)    
         else:
             block = Block(random.choice(shapes), (screen_width//2), 0)
-            if 1 in board.matriz[4]:
+            if 1 in board.matriz[3]:
                 gameOver = GameOverScreen(board.score)
                 running = False
                 firebase_database.addScoreToFireBase({'Score': board.score})
