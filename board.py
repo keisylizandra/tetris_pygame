@@ -48,52 +48,49 @@ class Board:
                     screen.blit(self.image, (pos_x , pos_y))
 
 
-    # Função para apagar uma linha completa
     def eraseLine(self, screen):
-        linhaApagada = -1
+        erasedLine = -1
         self.points = 0
+
         # Itera sobre cada linha da matriz de cima para baixo
         for j in range(2):
             for row in reversed(range(len(self.matriz))):
                 # Verifica se a linha está completa (não contém 0)
                 if 0 not in self.matriz[row]:
-                    del self.matriz[row]
-                    linhaApagada = row
-        
+                    # Set all values in the row to 0
+                    self.points += 100
+                    self.matriz[row] = [0] * len(self.matriz[row])
+                    erasedLine = row
 
-        if(linhaApagada != -1):
-            matriz_aux = []
-            primeira_linha_com_1 = -1
-            for row in range(linhaApagada):
+        matriz_aux = []
+        y = 0
+
+        if erasedLine != -1:
+            fist_Line_With_1 = -1
+            for row in range(erasedLine):
                 if 1 in self.matriz[row]:
-                    if(primeira_linha_com_1 == -1):
-                        primeira_linha_com_1 = row
+                    if fist_Line_With_1 == -1:
+                        fist_Line_With_1 = row
+
                     matriz_aux.append(self.matriz[row])
+                    self.matriz[row] = [0] * len(self.matriz[row])
 
 
             for i in range(len(matriz_aux)):
                 print(matriz_aux[i])
 
-            y =  primeira_linha_com_1 * config.IMAGE_LIST[0].get_height()
-
-
-
-
-
-            
+            y = fist_Line_With_1 * config.IMAGE_LIST[0].get_height()
         
-                    
-                 
 
-
-            
         if(self.points != 0):
             self.score += self.points
             config.point_sound.play()
             self.increaseSpeed()
         
-        print(f'linha apagada: {linhaApagada}')
-        
+        print(f'linha apagada: {erasedLine}')
+
+        return y, matriz_aux
+
 
     def increaseSpeed(self):
         if self.score == 500 or self.score >= 1000:

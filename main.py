@@ -21,7 +21,7 @@ shapes = config.SHAPES
 
 startScreen = StartScreen()
 startScreen.run()
-block = Block(random.choice(shapes), (screen_width//2), 4)
+block = Block(random.choice(shapes), (screen_width//2), 4, 1)
 board = Board(screen, random.choice(images))
 tick = config.TICK
 
@@ -37,8 +37,6 @@ while running:
             if event.key == pygame.K_UP and (block.y + images[0].get_width() * len(block.shape) < screen_height - images[0].get_width()):
                 if event.key == pygame.K_UP:
                     block.shape = block.rotate(block.shape)
-
-
 
     keys = pygame.key.get_pressed()  # get the state of all keyboard keys
     if keys[pygame.K_RIGHT]:  # if the right arrow key is pressed
@@ -56,13 +54,18 @@ while running:
 
     if block.collision:
         block.checkPositionAtBoard(board)
-        board.eraseLine(screen)
-        block = Block(random.choice(shapes), (screen_width//2), 0)
-        if 1 in board.matriz[4]:
-            gameOver = GameOverScreen(board.score)
-            running = False
-            firebase_database.addScoreToFireBase({'Score': board.score})
-            gameOver.run()
+
+        y,matriz_aux = board.eraseLine(screen)
+
+        if(matriz_aux != []):
+            block = Block(matriz_aux, 0, y, 2)    
+        else:
+            block = Block(random.choice(shapes), (screen_width//2), 0, 1)
+            if 1 in board.matriz[4]:
+                gameOver = GameOverScreen(board.score)
+                running = False
+                firebase_database.addScoreToFireBase({'Score': board.score})
+                gameOver.run()
 
 
     # update the display

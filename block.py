@@ -10,7 +10,8 @@ class Block:
     SCREEN_HEIGHT = config.SCREEN_HEIGHT
 
 
-    def __init__(self, shape, x, y):
+    def __init__(self, shape, x, y, type):
+        self.type = type
         self.SPEED = config.SPEED
         self.image = random.choice(Block.IMAGE_LIST)
         self.shape = shape
@@ -48,7 +49,6 @@ class Block:
 
     
     def checkPositionAtBoard(self, board):
-
         for row in range(len(self.shape)):
             for column in range(len(self.shape[row])):
                 if self.shape[row][column] == 1: 
@@ -108,6 +108,27 @@ class Block:
             return rotated_shape
         else:
             return rotated_shape
+    
+
+
+    def keepMoving(self, board):
+        shapes = [] 
+        for row in range(len(self.shape)):
+            for column in range(len(self.shape[row])):
+                if self.shape[row][column] == 1: 
+                    pos_x = self.x + (column + 1) * self.image.get_width()
+                    pos_y = self.y + (row + 1) * self.image.get_height()
+
+                    coordinateRow = pos_y // self.image.get_height() - 1 
+                    coordinateCol = pos_x // self.image.get_width() - 1
+
+                    if 0 <= coordinateRow + 1 < len(board.matriz) and 0 <= coordinateCol < len(board.matriz[0]):
+                        if board.matriz[coordinateRow + 1][coordinateCol] == 1:
+                            
+                            return True  # A posição está ocupada
+
+        return False  # A posição não está ocupada
+  
 
 
 
