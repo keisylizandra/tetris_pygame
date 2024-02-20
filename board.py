@@ -19,7 +19,7 @@ class Board:
         # Define a fonte e o texto
         font_path = config.FONT_PATH
         self.font = pygame.font.Font(font_path , 18)
-        self.text = self.font.render(f'Score: {self.score}', True, (255, 255, 255))  # White text
+        self.text = self.font.render(f'Score: {self.score}', True, (0, 0, 0))  # Black text
 
         # Desenha o texto no centro da barra
         self.text_rect = self.text.get_rect(center=(screen.get_width() / 2, Board.HEIGHT_TOP_BAR / 2))
@@ -36,7 +36,7 @@ class Board:
          # Cria um retângulo no topo da tela
         pygame.draw.rect(self.screen, Board.BAR_COLOR, pygame.Rect(0, 0, Board.SCREEN_WIDTH, Board.HEIGHT_TOP_BAR))
 
-        self.text = self.font.render(f'Score: {self.score}', True, (255, 255, 255))  # White text
+        self.text = self.font.render(f'Score: {self.score}', True, (0, 0, 0))  # Black text
 
         screen.blit(self.text, self.text_rect)
 

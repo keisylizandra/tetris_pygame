@@ -12,6 +12,7 @@ import firebase_database
 pygame.init()
 screen_width = config.SCREEN_WIDTH
 screen_height = config.SCREEN_HEIGHT
+background_image = config.BACKGROUND_IMAGE
 screen = pygame.display.set_mode((screen_width, screen_height))
 clock = pygame.time.Clock()
 running = True
@@ -47,7 +48,7 @@ while running:
         block.moveDown()
 
     # fill the screen with white
-    screen.fill(("white"))
+    screen.blit(background_image, (0, 0))
     block.draw(screen, board)
     block.moveDown()
     board.draw(screen)   

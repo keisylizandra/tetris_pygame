@@ -7,6 +7,7 @@ import firebase_database
 class GameOverScreen:
     SCREEN_WIDTH = config.SCREEN_WIDTH
     SCREEN_HEIGHT = config.SCREEN_HEIGHT
+    GAMEOVER_IMAGE = config.GAMEOVER_IMAGE
 
     def __init__(self, score):
         
@@ -15,10 +16,10 @@ class GameOverScreen:
         self.screen = pygame.display.set_mode((GameOverScreen.SCREEN_WIDTH, GameOverScreen.SCREEN_HEIGHT))
         self.score = score
         self.clock = pygame.time.Clock()
-        self.text_score = pygame.font.Font(font_path, 36).render(f'Score: {self.score}', True, (0,0,0))
-        self.text_best_score = pygame.font.Font(font_path, 36).render(f'Best score: {firebase_database.getHighestScore()}', True, (0,0,0))
-        self.text_rect = self.text_score.get_rect(center=(GameOverScreen.SCREEN_WIDTH // 2, GameOverScreen.SCREEN_HEIGHT // 2))
-        self.text_rect_best_score = self.text_best_score.get_rect(center=(GameOverScreen.SCREEN_WIDTH // 2, (GameOverScreen.SCREEN_HEIGHT // 2 + 25)))
+        self.text_score = pygame.font.Font(font_path, 25).render(f'Score: {self.score}', True, (0,0,0))
+        self.text_best_score = pygame.font.Font(font_path, 25).render(f'Best score: {firebase_database.getHighestScore()}', True, (0,0,0))
+        self.text_rect = self.text_score.get_rect(center=(GameOverScreen.SCREEN_WIDTH // 2, GameOverScreen.SCREEN_HEIGHT // 2 + 50))
+        self.text_rect_best_score = self.text_best_score.get_rect(center=(GameOverScreen.SCREEN_WIDTH // 2, (GameOverScreen.SCREEN_HEIGHT // 2 + 85)))
         
     def run(self):
 
@@ -36,7 +37,7 @@ class GameOverScreen:
            
 
             # fill the screen with white
-            self.screen.fill(("white"))
+            self.screen.blit(GameOverScreen.GAMEOVER_IMAGE, (0, 0))
             self.screen.blit(self.text_score, (self.text_rect))
             self.screen.blit(self.text_best_score, (self.text_rect_best_score))
 
