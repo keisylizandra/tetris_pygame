@@ -21,7 +21,7 @@ shapes = config.SHAPES
 
 startScreen = StartScreen()
 startScreen.run()
-block = Block(random.choice(shapes), (screen_width//2), 4, 1)
+block = Block(random.choice(shapes), (screen_width//2), 4)
 board = Board(screen, random.choice(images))
 tick = config.TICK
 
@@ -58,9 +58,9 @@ while running:
         y,matriz_aux = board.eraseLine(screen)
 
         if(matriz_aux != []):
-            block = Block(matriz_aux, 0, y, 2)    
+            block = Block(matriz_aux, 0, y)    
         else:
-            block = Block(random.choice(shapes), (screen_width//2), 0, 1)
+            block = Block(random.choice(shapes), (screen_width//2), 0)
             if 1 in board.matriz[4]:
                 gameOver = GameOverScreen(board.score)
                 running = False

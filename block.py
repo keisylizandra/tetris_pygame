@@ -10,8 +10,7 @@ class Block:
     SCREEN_HEIGHT = config.SCREEN_HEIGHT
 
 
-    def __init__(self, shape, x, y, type):
-        self.type = type
+    def __init__(self, shape, x, y):
         self.SPEED = config.SPEED
         self.image = random.choice(Block.IMAGE_LIST)
         self.shape = shape
@@ -124,7 +123,7 @@ class Block:
 
                     if 0 <= coordinateRow + 1 < len(board.matriz) and 0 <= coordinateCol < len(board.matriz[0]):
                         if board.matriz[coordinateRow + 1][coordinateCol] == 1:
-                            
+
                             return True  # A posição está ocupada
 
         return False  # A posição não está ocupada
