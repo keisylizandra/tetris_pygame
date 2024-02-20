@@ -18,7 +18,7 @@ class Board:
        
         # Define a fonte e o texto
         font_path = config.FONT_PATH
-        self.font = pygame.font.Font(font_path , 18)
+        self.font = pygame.font.Font(font_path , 25)
         self.text = self.font.render(f'Score: {self.score}', True, (0, 0, 0))  # Black text
 
         # Desenha o texto no centro da barra
@@ -75,10 +75,6 @@ class Board:
                     matriz_aux.append(self.matriz[row])
                     self.matriz[row] = [0] * len(self.matriz[row])
 
-
-            for i in range(len(matriz_aux)):
-                print(matriz_aux[i])
-
             y = fist_Line_With_1 * config.IMAGE_LIST[0].get_height()
         
 
@@ -86,8 +82,6 @@ class Board:
             self.score += self.points
             config.point_sound.play()
             self.increaseSpeed()
-        
-        print(f'linha apagada: {erasedLine}')
 
         return y, matriz_aux
 

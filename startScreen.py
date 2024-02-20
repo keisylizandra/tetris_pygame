@@ -13,8 +13,8 @@ class StartScreen:
         self.screen = pygame.display.set_mode((StartScreen.SCREEN_WIDTH, StartScreen.SCREEN_HEIGHT))
         self.clock = pygame.time.Clock()
         font_path = config.FONT_PATH
-        self.text_best_score = pygame.font.Font(font_path, 20).render(f'Best score: {firebase_database.getHighestScore()}', True, (0,0,0))
-        self.text_rect_best_score = self.text_best_score.get_rect(center=(StartScreen.SCREEN_WIDTH // 2, (StartScreen.SCREEN_HEIGHT // 2 + 100)))
+        self.text_best_score = pygame.font.Font(font_path, 30).render(f'Best score: {firebase_database.getHighestScore()}', True, (0,0,0))
+        self.text_rect_best_score = self.text_best_score.get_rect(center=(StartScreen.SCREEN_WIDTH // 2, (StartScreen.SCREEN_HEIGHT // 2 + 120)))
         
     def run(self):
 
