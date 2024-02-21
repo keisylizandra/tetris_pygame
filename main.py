@@ -6,6 +6,7 @@ from block import Block
 from board import Board
 from startScreen import StartScreen
 from gameOverScreen import GameOverScreen
+from pauseScreen import PauseScreen
 import firebase_database
 
 # Initialize the game
@@ -22,6 +23,7 @@ shapes = config.SHAPES
 
 startScreen = StartScreen()
 startScreen.run()
+pauseScreen = PauseScreen()
 block = Block(random.choice(shapes), (screen_width//2), 4)
 board = Board(screen, random.choice(images))
 tick = config.TICK
@@ -36,6 +38,8 @@ while running:
         if event.type == pygame.QUIT:
             running = False
         elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_p:
+                pauseScreen.run()
             if event.key == pygame.K_UP and (block.y + images[0].get_width() * len(block.shape) < screen_height - images[0].get_width()):
                 if event.key == pygame.K_UP:
                     block.shape = block.rotate(block.shape)
