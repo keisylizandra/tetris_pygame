@@ -25,6 +25,7 @@ startScreen.run()
 block = Block(random.choice(shapes), (screen_width//2), 4)
 board = Board(screen, random.choice(images))
 tick = config.TICK
+next_key_time = config.NEXT_KEY_TIME
 
 
 while running:
@@ -40,18 +41,22 @@ while running:
                     block.shape = block.rotate(block.shape)
 
     keys = pygame.key.get_pressed()  # get the state of all keyboard keys
-    if keys[pygame.K_RIGHT]:  # if the right arrow key is pressed
+    if keys[pygame.K_RIGHT] and current_time >= next_key_time:  # if the right arrow key is pressed
         block.moveLeftOrRight("right", board)
-    if keys[pygame.K_LEFT]:  # if the left arrow key is pressed
+        next_key_time = current_time + 100
+    if keys[pygame.K_LEFT] and current_time >= next_key_time:  # if the left arrow key is pressed
         block.moveLeftOrRight("left", board)
+        next_key_time = current_time + 100
     if keys[pygame.K_DOWN]:
         block.moveDown()
 
     # fill the screen with white
+    current_time = pygame.time.get_ticks()
     screen.blit(background_image, (0, 0))
     block.draw(screen, board)
     block.moveDown()
     board.draw(screen)   
+
 
     if block.collision:
         block.checkPositionAtBoard(board)
