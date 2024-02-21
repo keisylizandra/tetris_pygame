@@ -1,7 +1,8 @@
 import pygame
-import os
+from board import Board 
 import config
 import firebase_database
+
 
 #create a block class
 class GameOverScreen:
@@ -21,7 +22,7 @@ class GameOverScreen:
         self.text_rect = self.text_score.get_rect(center=(GameOverScreen.SCREEN_WIDTH // 2, GameOverScreen.SCREEN_HEIGHT // 2 + 40))
         self.text_rect_best_score = self.text_best_score.get_rect(center=(GameOverScreen.SCREEN_WIDTH // 2, (GameOverScreen.SCREEN_HEIGHT // 2 + 75)))
         
-    def run(self):
+    def run(self, board):
 
         self.running = True
 
@@ -33,6 +34,7 @@ class GameOverScreen:
                     self.running = False
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_RETURN:
+                        board.resetBoard()
                         self.running = False
            
 

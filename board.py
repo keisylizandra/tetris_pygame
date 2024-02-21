@@ -93,6 +93,8 @@ class Board:
             config.SPEED = config.SPEED
 
 
-                            
+    def resetBoard(self):
+        for row in range(len(self.matriz)):
+            self.matriz[row] = [0] * len(self.matriz[row])
     
   

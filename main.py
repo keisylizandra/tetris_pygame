@@ -73,10 +73,9 @@ while running:
             block = Block(random.choice(shapes), (screen_width//2), 0)
             if 1 in board.matriz[3]:
                 gameOver = GameOverScreen(board.score)
-                running = False
                 firebase_database.addScoreToFireBase({'Score': board.score})
-                gameOver.run()
-
+                gameOver.run(board)
+                startScreen.run()
 
     # update the display
     pygame.display.flip()
