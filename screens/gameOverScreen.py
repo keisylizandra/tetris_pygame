@@ -1,7 +1,7 @@
 import pygame
-from board import Board 
-import config
-import firebase_database
+from entities.board import Board 
+import configs.config as config
+import dataBase.firebase_database as firebase_database
 import game
 
 

@@ -1,7 +1,7 @@
 import pygame
 import random
 import os 
-import config
+import configs.config as config
 
 #create a block class
 class Block:

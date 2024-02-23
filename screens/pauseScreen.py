@@ -1,7 +1,7 @@
 import pygame
 import os
-import config
-import firebase_database
+import configs.config as config
+import dataBase.firebase_database as firebase_database
 
 class PauseScreen:
     SCREEN_WIDTH = config.SCREEN_WIDTH

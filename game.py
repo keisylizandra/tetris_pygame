@@ -1,13 +1,13 @@
 import pygame
 import os
 import random
-import config
-from block import Block
-from board import Board
-from startScreen import StartScreen
-from gameOverScreen import GameOverScreen
-from pauseScreen import PauseScreen
-import firebase_database
+import configs.config as config
+from entities.block import Block
+from entities.board import Board
+from screens.startScreen import StartScreen
+from screens.gameOverScreen import GameOverScreen
+from screens.pauseScreen import PauseScreen
+import dataBase.firebase_database as firebase_database
 
 # Initialize the game
 
