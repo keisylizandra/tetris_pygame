@@ -2,6 +2,7 @@ import pygame
 from board import Board 
 import config
 import firebase_database
+import game
 
 
 #create a block class
@@ -25,7 +26,6 @@ class GameOverScreen:
     def run(self, board):
 
         self.running = True
-
         while self.running:
             # poll for events
             # pygame.QUIT event means the user clicked X to close your window
@@ -35,7 +35,9 @@ class GameOverScreen:
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_RETURN:
                         board.resetBoard()
+                        game.main()
                         self.running = False
+                        
            
 
             # fill the screen with white
