@@ -8,8 +8,12 @@ firebase_admin.initialize_app(cred)
 db = firestore.client()
 
 def addScoreToFireBase(data):
-    doc_ref = db.collection('Scores').document()
-    doc_ref.set(data)
+    higherScore = getHighestScore()
+    if higherScore == None:
+        higherScore = 0
+    if(data['Score'] > higherScore):
+        doc_ref = db.collection('Scores').document()
+        doc_ref.set(data)
 
 
 
