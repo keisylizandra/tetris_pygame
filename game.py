@@ -30,12 +30,14 @@ def main():
     board = Board(screen, random.choice(images))
     tick = config.TICK
     next_key_time = config.NEXT_KEY_TIME
+    
 
+    config.music_sound.play(-1)
 
     while running:
         # poll for events
         # pygame.QUIT event means the user clicked X to close your window
-
+        
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
@@ -66,12 +68,14 @@ def main():
 
         if block.collision:
             block.checkPositionAtBoard(board)
-
             y,matriz_aux = board.eraseLine(screen)
 
             if(matriz_aux != []):
                 block = Block(matriz_aux, 0, y)    
             else:
+                #config.colision_sound.play()
+
+
                 block = Block(random.choice(shapes), (screen_width//2), 0)
                 if 1 in board.matriz[3]:
                     gameOver = GameOverScreen(board.score)

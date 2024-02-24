@@ -2,7 +2,7 @@ import os
 import pygame
 
 
-SCREEN_WIDTH = 400
+SCREEN_WIDTH = 300
 SCREEN_HEIGHT = 600
 HEIGHT_TOP_BAR = 75
 NEXT_KEY_TIME = 0
@@ -21,8 +21,16 @@ GAMEOVER_IMAGE = pygame.image.load(os.path.join("assets/imgs","gameOver.png"))
 PAUSE_IMAGE = pygame.image.load(os.path.join("assets/imgs","pauseScreen.png"))
 POINT_SOUND_PATH = os.path.join("assets/sounds", "collect-ring-15982.mp3")
 GAMEOVER_SOUND_PATH = os.path.join("assets/sounds", "videogame-death-sound-43894 (1).mp3")
+COLISION_SOUND_PATH = os.path.join("assets/sounds", "colisionSound.mp3")
+
+
 point_sound = pygame.mixer.Sound(POINT_SOUND_PATH)
 gameOver_sound = pygame.mixer.Sound(GAMEOVER_SOUND_PATH)
+colision_sound = pygame.mixer.Sound(COLISION_SOUND_PATH)
+
+GAME_MUSIC_SOUND_PATH = os.path.join("assets/sounds", "gameMusic.mp3")
+music_sound = pygame.mixer.Sound(GAME_MUSIC_SOUND_PATH)
+music_sound.set_volume(0.05)
 
 SHAPES = [
             [
