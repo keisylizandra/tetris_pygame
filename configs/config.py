@@ -10,7 +10,7 @@ NEXT_KEY_TIME = 0
 BAR_COLOR = (255,255,255)
 
 IMAGE_LIST = [pygame.image.load(os.path.join("assets/imgs", "piscadinha.png")), pygame.image.load(os.path.join("assets/imgs", "bichinha.png")), pygame.image.load(os.path.join("assets/imgs", "apaixonado.png")), pygame.image.load(os.path.join("assets/imgs", "zeRuela.png")), pygame.image.load(os.path.join("assets/imgs", "medroso.png"))]
-SPEED = 3
+SPEED = 5
 FONT_PATH = os.path.join("assets/fonts", "Honk-Regular.ttf")
 
 TICK = 30
